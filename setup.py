@@ -110,19 +110,22 @@ def hash_file(fname):
 
 def install_mida_binary():
     sys.stdout.flush()
+    '''
     if platform.system() == 'Linux':
         urllib.request.urlretrieve(LATEST_MIDA_BINARY_LINUX, '.mida.tmp')
     elif platform.system() == 'Darwin':
         urllib.request.urlretrieve(LATEST_MIDA_BINARY_MAC, '.mida.tmp')
     else:
         return 'Unsupported system type: %s' % platform.system()
-
+    '''
     # TODO: Verify hash here or something maybe
     try:
-        os.rename('.mida.tmp', '/usr/local/bin/mida')
+        #os.rename('.mida.tmp', '/usr/local/bin/mida')
+        os.rename('mida', '/usr/local/bin/mida')
         subprocess.call(['chmod', '0755', '/usr/local/bin/mida'])
     except:
-        os.remove('.mida.tmp')
+        #os.remove('.mida.tmp')
+        os.remove('mida')
         return "Successful download but failed to install"
     return None
 

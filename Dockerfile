@@ -11,6 +11,7 @@ RUN echo "deb https://deb.torproject.org/torproject.org $(lsb_release -cs) main"
 RUN apt update && apt -y install tor deb.torproject.org-keyring
 
 COPY setup.py /root
+COPY mida /root
 
 RUN python3 /root/setup.py 
 
