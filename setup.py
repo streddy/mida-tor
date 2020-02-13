@@ -33,6 +33,7 @@ def main(args):
         print('Unsupported operating system: %s' % OS)
         return
 
+    '''
     # Download and parse sha256sums
     sha256sums = {}
     try:
@@ -48,6 +49,7 @@ def main(args):
         sha256sums[pieces[1].strip()] = pieces[0].strip()
     f.close()
     os.remove('.sha256sums.txt')
+    '''
 
     # Check whether MIDA is installed. If not, install it.
     path = shutil.which('mida')
@@ -57,6 +59,7 @@ def main(args):
         install_mida_binary()
         sys.stdout.write('Installed!\n')
         sys.stdout.flush()
+    '''
     else:
         h = hash_file(path)
         if OS_SPECIFIC_NAME in sha256sums and h == sha256sums[OS_SPECIFIC_NAME]:
@@ -75,6 +78,7 @@ def main(args):
             else:
                 sys.stdout.write('Error:\n' + result + '\n')
             sys.stdout.flush()
+    '''
 
     if args.instrumented_browser != "":
         if OS == 'Linux':
@@ -121,7 +125,7 @@ def install_mida_binary():
     # TODO: Verify hash here or something maybe
     try:
         #os.rename('.mida.tmp', '/usr/local/bin/mida')
-        os.rename('mida', '/usr/local/bin/mida')
+        os.rename('/root/mida', '/usr/local/bin/mida')
         subprocess.call(['chmod', '0755', '/usr/local/bin/mida'])
     except:
         #os.remove('.mida.tmp')
